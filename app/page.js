@@ -1,5 +1,13 @@
-import Image from 'next/image'
+import Link from 'next/link'
+import Navigation from './components/Navigation'
 
-export default function Home() {
-  return <h1>Hello Next!</h1>
+export default function Page() {
+  return (
+    <div>
+      <Navigation />
+      <h1>Mountain Villa! Welcome to paradise</h1>
+
+      <Link href="/cabins">Explore luxury cabins</Link>
+    </div>
+  )
 }
