@@ -4,7 +4,13 @@ import Navigation from '@/app/_components/Navigation'
 import '@/app/_styles/globals.css'
 
 export const metadata = {
-  title: 'The Mountain Villa',
+  //title: 'Mountain Villa',
+  title: {
+    template: '%s / Mountain Villa',
+    default: 'Welcome / Mountain Villa',
+  },
+  description:
+    'Luxurious cabin hotel, located in the beautiful British Columbia in Canada, surrounded by magnificent mountains and green forests',
 }
 
 export default function RootLayout({ children }) {
