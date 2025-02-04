@@ -5,6 +5,8 @@ import Spinner from '../_components/Spinner'
 export const metadata = {
   title: 'Cabins',
 }
+// Revalidate data every 1 hour
+export const revalidate = 3600
 
 export default function Page() {
   return (
