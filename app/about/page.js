@@ -1,6 +1,10 @@
 import Image from 'next/image'
 import image1 from '@/public/about-1.jpg'
 import image2 from '@/public/about-2.jpg'
+import CabinsCount from '@/app/_components/CabinsCount'
+
+//revalidate data (Cabins quantity) 1 times per day
+export const revalidate = 86400
 
 export const metadata = {
   title: 'About',
@@ -22,11 +26,11 @@ export default function Page() {
             ones.
           </p>
           <p>
-            Our eight cozy yet elegant cabins offer a welcoming retreat, but the
-            true freedom lies in the breathtaking mountains around you. Stroll
-            through lush forests, breathe in the crisp mountain air, and unwind
-            under a starlit sky—whether by a crackling campfire or in your
-            private hot tub.
+            Our <CabinsCount /> cozy yet elegant cabins offer a welcoming
+            retreat, but the true freedom lies in the breathtaking mountains
+            around you. Stroll through lush forests, breathe in the crisp
+            mountain air, and unwind under a starlit sky—whether by a crackling
+            campfire or in your private hot tub.
           </p>
           <p>
             This is where unforgettable memories are made, surrounded by
