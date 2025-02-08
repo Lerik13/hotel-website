@@ -1,8 +1,9 @@
 'use server'
 
 import { revalidatePath } from 'next/cache'
-import { auth, signIn, signOut } from './auth'
+import { redirect } from 'next/navigation'
 import { supabase } from './supabase'
+import { auth, signIn, signOut } from './auth'
 import { getBookings } from './data-service'
 
 export async function signInAction() {
@@ -36,6 +37,7 @@ export async function updateGuest(formData) {
   revalidatePath('/account/profile')
 }
 
+// Reservation = Booking
 export async function deleteReservation(bookingId) {
   const session = await auth()
   if (!session) throw new Error('You must be logged in')
@@ -51,4 +53,41 @@ export async function deleteReservation(bookingId) {
   if (error) throw new Error('Booking could not be deleted')
 
   revalidatePath('/account/reservations')
+}
+
+export async function updateReservation(formData) {
+  const bookingId = Number(formData.get('id'))
+
+  // 1) Authentication
+  const session = await auth()
+  if (!session) throw new Error('You must be logged in')
+
+  // 2) Authorization
+  const guestBookings = await getBookings(session.user.guestId)
+  const guestBookingIds = guestBookings.map((booking) => booking.id)
+
+  if (!guestBookingIds.includes(bookingId))
+    throw new Error('You are not allowed to update this booking')
+
+  // 3) Building update data
+  const updateData = {
+    numGuests: formData.get('numGuests'),
+    observations: formData.get('observations').slice(0, 1000), // additional protection from user, who can input too long text
+  }
+
+  // 4) Mutation
+  const { error } = await supabase
+    .from('bookings')
+    .update(updateData)
+    .eq('id', bookingId)
+
+  // 5) Error handling
+  if (error) throw new Error('Booking could not be updated')
+
+  // 6) Revalidation
+  revalidatePath(`/account/reservations/edit/${bookingId}`)
+  revalidatePath('/account/reservations')
+
+  // 7) Redirecting
+  redirect('/account/reservations')
 }
