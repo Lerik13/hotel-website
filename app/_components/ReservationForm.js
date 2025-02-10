@@ -3,13 +3,14 @@
 import { differenceInDays } from 'date-fns'
 import { useReservation } from './ReservationContext'
 import { createReservation } from '@/app/_lib/actions'
+import { setLocalHoursToUTCOffset } from '@/app/_lib/utils'
 import SubmitButton from './SubmitButton'
 
 function ReservationForm({ cabin, user }) {
   const { id, maxCapacity, regularPrice, discount } = cabin
   const { range, resetRange } = useReservation()
-  const startDate = range.from
-  const endDate = range.to
+  const startDate = setLocalHoursToUTCOffset(range.from)
+  const endDate = setLocalHoursToUTCOffset(range.to)
   const numNights = differenceInDays(endDate, startDate)
   const cabinPrice = numNights * (regularPrice - discount)
 
@@ -43,8 +44,8 @@ function ReservationForm({ cabin, user }) {
       <form
         //action={createBookingWithData}
         action={async (formData) => {
-          await createBookingWithData(formData)
           resetRange()
+          await createBookingWithData(formData)
         }}
         className="bg-primary-900 py-10 px-16 text-lg flex gap-5 flex-col"
       >

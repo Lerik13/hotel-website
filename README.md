@@ -22,7 +22,7 @@
 
 ### Using Technologies
 - Next.js - full-stack framework. Handles routing, SSR, data fetching, remote state management.
-- Supabase - DB / API
+- Supabase - backend API, DB management
 - Context API - UI state management
 - Tailwind CSS
 
