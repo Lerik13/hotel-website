@@ -30,6 +30,7 @@ function ReservationCard({ booking, onDelete }) {
           src={image}
           alt={`Cabin ${name}`}
           fill
+          sizes="(max-width: 600px) 50vw, (max-width: 1024px) 25vw, 20vw"
           className="object-cover border-r border-primary-800"
         />
       </div>

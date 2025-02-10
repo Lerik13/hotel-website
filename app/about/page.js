@@ -13,7 +13,7 @@ export const metadata = {
 export default function Page() {
   return (
     <div className="grid grid-cols-5 gap-x-24 gap-y-32 text-lg items-center">
-      <div className="col-span-3">
+      <div className="col-span-5 md:col-span-3">
         <h1 className="text-4xl mb-10 text-accent-400 font-medium">
           Welcome to The Wild Oasis
         </h1>
@@ -40,23 +40,27 @@ export default function Page() {
         </div>
       </div>
 
-      <div className="col-span-2">
+      <div className="col-span-5 md:col-span-2 relative aspect-square">
         <Image
           src={image1}
+          fill
+          sizes="(max-width: 768px) 90vw, (max-width: 1200px) 50vw, 40vw"
+          className="object-cover"
           alt="Family sitting around a fire pit in front of cabin"
         />
       </div>
 
-      <div className="relative aspect-square col-span-2">
+      <div className="col-span-5 md:col-span-2 relative aspect-square">
         <Image
-          src="/about-2.jpg"
+          src={image2}
           fill
+          sizes="(max-width: 768px) 90vw, (max-width: 1200px) 50vw, 40vw"
           className="object-cover"
           alt="Family that manages The Wild Oasis"
         />
       </div>
 
-      <div className="col-span-3">
+      <div className="col-span-5 md:col-span-3">
         <h1 className="text-4xl mb-10 text-accent-400 font-medium">
           Managed by our family since 1962
         </h1>
