@@ -1,5 +1,7 @@
 # Next.js app for Hotel users
 
+![Screenshot](/public/screenshots/0.png)
+
 ### Project requirements:
 - Users of the app are potential guests and actual guests
 - Guests should be able to learn all about the Hotel (About Page)
@@ -26,3 +28,18 @@
 - Context API - UI state management
 - Tailwind CSS
 
+### Desktop View
+
+![Screenshot](/public/screenshots/1.jpg)
+
+![Screenshot](/public/screenshots/2.jpg)
+
+![Screenshot](/public/screenshots/3.jpg)
+
+![Screenshot](/public/screenshots/4.jpg)
+
+![Screenshot](/public/screenshots/5.jpg)
+
+![Screenshot](/public/screenshots/6.jpg)
+
+![Screenshot](/public/screenshots/7.jpg)
